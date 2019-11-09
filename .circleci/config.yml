@@ -6,7 +6,6 @@ jobs:
 
     steps:
       - checkout
-      - run: pwd
       - run: 
           name: build the sd image
-          command: cd /usr/local/buildroot-2019.02.6/;
+          command: cd /usr/local/buildroot-2019.02.6/; make FORCE_UNSAFE_CONFIGURE=1 BR2_EXTERNAL=/root/project 

@@ -6,11 +6,8 @@ jobs:
 
     steps:
       - checkout
-
-      - run:
-          name: Greeting
-          command: echo Hello, world.
-
-      - run:
-          name: Print the Current Time
-          command: date
+      - run: ls -al
+      - run: 
+          name: Get Buildroot LTS
+          command: curl https://buildroot.org/downloads/buildroot-2019.02.6.tar.bz2 
+      - run: ls -al 

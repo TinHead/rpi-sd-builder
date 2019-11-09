@@ -6,8 +6,8 @@ jobs:
 
     steps:
       - checkout
-      - run: ls -al
+      - run: apt install curl -y
       - run: 
           name: Get Buildroot LTS
-          command: curl https://buildroot.org/downloads/buildroot-2019.02.6.tar.bz2 
+          command: cd ..;curl https://buildroot.org/downloads/buildroot-2019.02.6.tar.bz2 
       - run: ls -al 

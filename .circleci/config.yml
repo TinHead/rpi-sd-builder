@@ -9,4 +9,4 @@ jobs:
       - run: 
           name: Get Buildroot LTS
           command: curl https://buildroot.org/downloads/buildroot-2019.02.6.tar.bz2 -o ../buildroot-2019.02.6.tar.bz2
-      - run: cd ..; tar jxvf ../buildroot-2019.02.6.tar.bz2
+      - run: cd ..; tar jxvf buildroot-2019.02.6.tar.bz2

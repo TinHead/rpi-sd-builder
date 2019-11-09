@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_MOBBOT_PATH/package/mjpg-streamer-rpi/Config.in"

@@ -1,0 +1,11 @@
+FROM archlinux/base
+MAINTAINER "vlad.fratila@gmail.com"
+RUN yes | pacman -Syu --noconfirm
+RUN yes | pacman -Sy base-devel git wget bc unzip cpio python rsync mc --noconfirm
+RUN rm -fr /var/cache/pacman/pkg/*
+RUN mkdir /usr/local/build
+RUN git clone https://github.com/buildroot/buildroot.git /usr/local/build/buildroot
+RUN git clone https://gitlab+deploy-token-47295:dsPFsV7G5rdVXmNNnyUs@gitlab.com/csw-mobot/buildroot-mobot.git /usr/local/build/buildroot-mobbot
+RUN cd /usr/local/build/buildroot; make BR2_EXTERNAL=../buildroot-mobbot/ mobbot-rpi0w_defconfig
+RUN cd /usr/local/build/buildroot; FORCE_UNSAFE_CONFIGURE=1 make BR2_EXTERNAL=../buildroot-mobbot/ toolchain
+RUN rm -fr /usr/local/build/buildroot/dl/*

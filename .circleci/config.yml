@@ -2,11 +2,11 @@ version: 2
 jobs:
   build:
     docker:
-      - image: gentoo/stage3-amd64
+      - image: tinhead/rpi-image-builder:latest
 
     steps:
       - checkout
+      - run: pwd
       - run: 
-          name: Get Buildroot LTS
-          command: curl https://buildroot.org/downloads/buildroot-2019.02.6.tar.bz2 -o ../buildroot-2019.02.6.tar.bz2
-      - run: cd ..; tar jxvf buildroot-2019.02.6.tar.bz2
+          name: build the sd image
+          command: cd /usr/local/buildroot-2019.02.6/;

@@ -1,9 +1,1 @@
-[Unit]
-Before=wpa_supplicant@wlan0.service
-
-[Service]
-Type=simple
-ExecStart=/usr/local/bin/setup_wpa.sh
-
-[Install]
-WantedBy=network.target
+../../../../usr/lib/systemd/system/setup_wifi.service

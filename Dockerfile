@@ -19,3 +19,4 @@ RUN cd /usr/local/buildroot-${BUIDROOT_VERSION}; FORCE_UNSAFE_CONFIGURE=1 make B
 # Clean the downloads
 RUN rm -fr /usr/local/buildroot-${BUIDROOT_VERSION}/dl/*
 RUN rm /usr/local/buildroot-${BUIDROOT_VERSION}.tar.bz2
+RUN rm -fr /usr/local/buildroot-${BUIDROOT_VERSION}/output/images/*

@@ -5,6 +5,6 @@ newend=$(($(cat /sys/block/mmcblk0/size)-8))
 
 if [ "$newend" -gt "$end" ]
 then
-    parted -s /dev/mmcblk0 unit s resize 2 $start $newend
+    parted -s /dev/mmcblk0 unit s resize 2 $newend
     resize2fs /dev/mmcblk0p2
 fi

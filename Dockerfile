@@ -1,9 +1,11 @@
-FROM alpine/alpine
+FROM gentoo/portage:latest as portage
+FROM gentoo/stage3-amd64 as builder
 
 ARG BUIDROOT_VERSION="2019.02.6"
-
+#add portage for build
+COPY --from=portage /var/db/repos/gentoo /var/db/repos/gentoo
 #extra stuff for buildroot
-RUN apk add cpio bc curl
+RUN emerge cpio bc
 # get buildroot tarball
 RUN curl https://buildroot.org/downloads/buildroot-${BUIDROOT_VERSION}.tar.bz2 -o /usr/local/buildroot-${BUIDROOT_VERSION}.tar.bz2
 # extract to workir

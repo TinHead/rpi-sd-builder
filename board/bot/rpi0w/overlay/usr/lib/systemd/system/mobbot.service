@@ -1,0 +1,10 @@
+[Unit]
+Description=Control web interface for MobBot
+After=network-online.target
+
+[Service]
+User=root
+ExecStart=/opt/mobbot/mobbot
+
+[Install]
+WantedBy=multi-user.target

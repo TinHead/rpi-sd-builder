@@ -50,13 +50,13 @@ __EOF__
 done
 
 #custom config
-cp ${BR2_EXTERNAL_MOBBOT_PATH}/board/mobbot/${BOARD_NAME}/config.txt ${BINARIES_DIR}/config.txt
-cp ${BR2_EXTERNAL_MOBBOT_PATH}/board/mobbot/${BOARD_NAME}/cmdline.txt ${BINARIES_DIR}/cmdline.txt
-cp ${BR2_EXTERNAL_MOBBOT_PATH}/board/mobbot/${BOARD_NAME}/rpi-firmware/start_x.elf ${BINARIES_DIR}/start_x.elf
-cp ${BR2_EXTERNAL_MOBBOT_PATH}/board/mobbot/${BOARD_NAME}/rpi-firmware/fixup_x.dat ${BINARIES_DIR}/fixup_x.dat
-cp ${BR2_EXTERNAL_MOBBOT_PATH}/board/mobbot/${BOARD_NAME}/rpi-firmware/bcm2708-rpi-0-w.dtb ${BINARIES_DIR}/bcm2708-rpi-0-w.dtb
+cp ${BR2_EXTERNAL_BOT_PATH}/board/mobbot/${BOARD_NAME}/config.txt ${BINARIES_DIR}/config.txt
+cp ${BR2_EXTERNAL_BOT_PATH}/board/mobbot/${BOARD_NAME}/cmdline.txt ${BINARIES_DIR}/cmdline.txt
+cp ${BR2_EXTERNAL_BOT_PATH}/board/mobbot/${BOARD_NAME}/rpi-firmware/start_x.elf ${BINARIES_DIR}/start_x.elf
+cp ${BR2_EXTERNAL_BOT_PATH}/board/mobbot/${BOARD_NAME}/rpi-firmware/fixup_x.dat ${BINARIES_DIR}/fixup_x.dat
+cp ${BR2_EXTERNAL_BOT_PATH}/board/mobbot/${BOARD_NAME}/rpi-firmware/bcm2708-rpi-0-w.dtb ${BINARIES_DIR}/bcm2708-rpi-0-w.dtb
 #mkdir ${BINARIES_DIR}/rpi-firmware
-cp -R ${BR2_EXTERNAL_MOBBOT_PATH}/board/mobbot/${BOARD_NAME}/rpi-firmware/* ${BINARIES_DIR}/rpi-firmware/
+cp -R ${BR2_EXTERNAL_BOT_PATH}/board/mobbot/${BOARD_NAME}/rpi-firmware/* ${BINARIES_DIR}/rpi-firmware/
 cp ${BUILD_DIR}/linux-custom/arch/arm/boot/zImage ${BINARIES_DIR}/zImage
 
 rm -rf "${GENIMAGE_TMP}"

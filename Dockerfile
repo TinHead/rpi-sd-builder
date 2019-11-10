@@ -1,45 +1,23 @@
-FROM debian
-MAINTAINER "vlad.fratila@gmail.com"
+FROM gentoo/portage:latest as portage
+FROM gentoo/stage3-amd64 as builder
+MAINTAINER "razvan.lixandru@gmail.com"
 
-ENV DEBIAN_FRONTEND=noninteractive
+ARG BUIDROOT_VERSION="2019.02.6"
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    bash \
-    bc \
-    binutils \
-    build-essential \
-    bzip2 \
-    cpio \
-    g++ \
-    gcc \
-    git \
-    gzip \
-    locales \
-    libncurses5-dev \
-    libdevmapper-dev \
-    libsystemd-dev \
-    make \
-    mercurial \
-    whois \
-    patch \
-    perl \
-    python \
-    rsync \
-    sed \
-    tar \
-    vim \
-    unzip \
-    wget \
-    bison \
-    flex \
-    libssl-dev \
-    libfdt-dev
-
-RUN locale-gen en_US.utf8 && mkdir -p /opt/buildroot && mkdir -p /opt/output && mkdir -p /opt/input
-WORKDIR /opt/buildroot
-VOLUME /opt/output
-RUN git clone https://github.com/buildroot/buildroot.git .
-ENV TARGET_NAME="mobot-rpi0w_defconfig"
-
-CMD "make O=/opt/output BR2_EXTERNAL=/opt/input/ $TARGET_NAME && make O=/opt/output BR2_EXTERNAL=/opt/input/"
+#add portage for build
+COPY --from=portage /var/db/repos/gentoo /var/db/repos/gentoo
+#setup /usr/local as workdir
+WORKDIR /usr/local
+#extra stuff for buildroot
+RUN emerge cpio bc
+# get buildroot tarball
+RUN curl https://buildroot.org/downloads/buildroot-${BUIDROOT_VERSION}.tar.bz2 -o /usr/local/buildroot-${BUIDROOT_VERSION}.tar.bz2
+# extract to workir
+RUN tar jxvf /usr/local/buildroot-${BUIDROOT_VERSION}.tar.bz2 -C /usr/local
+# add aour stuff and configs
+COPY . /usr/local/rpi-sd-builder
+# build the toolchain with our config
+RUN cd /usr/local/buildroot-${BUIDROOT_VERSION}; make  BR2_EXTERNAL=/usr/local/rpi-sd-builder bot-rpi0w_defconfig; FORCE_UNSAFE_CONFIGURE=1 make BR2_EXTERNAL=/usr/local/rpi-sd-builder V=0
+# Clean the downloads
+RUN rm -fr /usr/local/buildroot-${BUIDROOT_VERSION}/dl/*
+RUN rm /usr/local/buildroot-${BUIDROOT_VERSION}.tar.bz2

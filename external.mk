@@ -1,1 +1,1 @@
-include $(sort $(wildcard $(BR2_EXTERNAL_MOBBOT_PATH)/package/*/*.mk))
+include $(sort $(wildcard $(BR2_EXTERNAL_BOT_PATH)/package/*/*.mk))

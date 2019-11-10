@@ -1,0 +1,13 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: build builder
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: Hub_user
+    password:
+      from_secret: Hub_pass

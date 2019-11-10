@@ -1,4 +1,5 @@
-[![CircleCI](https://circleci.com/gh/TinHead/rpi-sd-builder.svg?style=svg)](https://circleci.com/gh/TinHead/rpi-sd-builder)
+
+[![Build Status](https://cloud.drone.io/api/badges/TinHead/rpi-sd-builder/status.svg)](https://cloud.drone.io/TinHead/rpi-sd-builder)
 
 # RPI buildroot based image
 

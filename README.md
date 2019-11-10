@@ -17,9 +17,20 @@ The image contains the minimal requirements for a running system and some extras
 - rpi0w firmware and kernel from raspberry github
 - systemd as init system
 - docker
-- mjpeg streamer patched for rpi camera
 - wpa-supplicant and tools to get wifi going 
 
-There is also a non functional overlay added from a previous project I will reporpose as soon as I know exactly what I want to do :)
+Wifi is setup as Access Point by default:
+
+- network ssid: bot
+- network pass: bot123456
+_
+There is a script which runs on boot and checks for /boot/wifi_network_conf file which should look like:
+
+```text
+network: mynetwork
+pass: mynetworkpass
+```
+
+If the file is found the network is added to wpa-supplicant and AP is disabled.
 
 I intend to create a collection of docker images to run on it see how it goes.
